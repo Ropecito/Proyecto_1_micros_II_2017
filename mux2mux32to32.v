@@ -15,7 +15,7 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: Mux de 2 a 1, genera un bus de salida de 32 bits.
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
