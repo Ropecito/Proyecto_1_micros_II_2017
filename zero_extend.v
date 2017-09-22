@@ -15,7 +15,7 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: Módulo encargado de realizar la extensión de cero.
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
