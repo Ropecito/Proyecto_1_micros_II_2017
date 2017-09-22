@@ -15,7 +15,7 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: Módulo ALU que realiza las operaciones lógicas y aritméticas.
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -80,6 +80,8 @@ or #(50) or9(o9,o1,o2,o3,o4);
 or #(50) or10(o10,o5,o6,o7,o8);
 nor #(50) nor1(zero,o9,o10);
 endmodule
+
+//Este modulo trabaja con el bit que elije que tipo de operación se debe realizar.
 `timescale 1 ps / 100 fs
 module alu1bit(result,crrout,a,b,carryin,less,ALUControl);
 output result,crrout;
@@ -91,6 +93,7 @@ mux21 mux2(xorlessOut,xorOut,less,ALUControl[1]);
 mux21 mux3(result,addsubOut,xorlessOut,ALUControl[0]);
 endmodule
 
+//Módulo encargado del resultado final y el carry out.
 `timescale 1 ps / 100 fs
 module addsub(Out,cout,a,b,cin,select);
 input a,b,cin,select;
@@ -101,6 +104,7 @@ mux21 mux1(b1,b,notb,select);
 adder adder1(Out,cout,a,b1,cin);
 endmodule
 
+//Módulo sumador
 `timescale 1 ps / 100 fs
 module adder(sum,cout,a,b,cin);
 input   a,b,cin;
@@ -114,6 +118,7 @@ and #(50) and2(c3,c2,cin);
 or #(50) or2(cout,c1,c3);
 endmodule 
 
+//Mux utilizado para seleccionar uno de los registros de entrada de la ALU.
 `timescale 1 ps / 100 fs
 module mux21(O,A,B,sel);
 // sel = 0 thi O = A
