@@ -15,19 +15,19 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: Módulo para la memoria de istrucciones 
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
 
 module Instruction_memory(instruction, address);
 
-input [31:0] address;
-output [31:0] instruction;
-reg [31:0]instrmem[1023:0];
+input [31:0] address; //Dirección de entrada para buscar la instrucción
+output [31:0] instruction; //Bus de instrucción de 32 bits ( OP code, rs, rt, etc)
+reg [31:0]instrmem[1023:0]; //Datos de 32 bits, memoria de 1024.
 reg [31:0] temp;
 
-buf #1000 buf0(instruction[0],temp[0]),
+   buf #1000 buf0(instruction[0],temp[0]), 
    buf1(instruction[1],temp[1]),
    buf2(instruction[2],temp[2]),
    buf3(instruction[3],temp[3]),
@@ -67,7 +67,7 @@ end
 
 initial
 begin
-$readmemb("instr.txt", instrmem);
+   $readmemb("instr.txt", instrmem); //Lee el archivo .txt y guarda el dato en instrmem.
 end
 
 endmodule
@@ -78,11 +78,11 @@ module instrmemstimulous();
 reg [31:0] addr;
 wire [31:0] instr;
 
-Instruction_memory instructionmemory(instr, addr);
+Instruction_memory instructionmemory(instr, addr); 
 
 initial
 begin
-$monitor("Mem Address=%h instruction=%b",addr,instr);
+$monitor("Mem Address=%h instruction=%b",addr,instr); //despliega los datos de add y instr en ese formato
 addr=32'd0;
 #10000 addr=32'd4;
 #10000 addr=32'd8;
