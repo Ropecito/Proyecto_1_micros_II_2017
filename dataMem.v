@@ -15,7 +15,7 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: Módulo para la memoria de datos.
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -23,7 +23,7 @@
 module dataMem(data, address, writedata, writeenable,MemRead,clk);
 
 input [31:0] address, writedata;
-input writeenable,MemRead, clk;
+input writeenable,MemRead, clk; //Enable para escribir en la memoria.
 output [31:0] data;
 reg [7:0] datamem[1023:0];
 reg [31:0] temp;
