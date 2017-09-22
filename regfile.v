@@ -15,7 +15,7 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: Módulo del banco de registros
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -39,7 +39,7 @@ wire [31:0] WriteEn;
 wire [31:0] RegArray [0:31];
 integer i;
      //----Decoder Block
- decoder Decoder1( WriteEn,RegWrite,WriteRegister);
+     decoder Decoder1( WriteEn,RegWrite,WriteRegister); //Decodifica la instrucción desde el bit 0 al 31
  register reg0 (RegArray[0],32'b0,1'b1,1'b0, clk);
  register reg1 (RegArray[1],WriteData,WriteEn[1],reset,clk);
  register reg2 (RegArray[2],WriteData,WriteEn[2],reset,clk);
@@ -91,13 +91,13 @@ endmodule
 module D_FF (q, d, reset, clk);
 output q;
 input d, reset, clk;
-reg q; // Indicate that q is stateholding
+reg q; // Indica que q está en espera
  
 always @(posedge clk or posedge reset)
 if (reset)
-q = 0; // On reset, set to 0
+q = 0; // Estado de reset
 else
-q = d; // Otherwise out = d 
+q = d; // Sino está en reset se le asigna el siguiente estado d.
 endmodule
 // 1 bit register 
 module RegBit(BitOut, BitData, WriteEn,reset, clk);
