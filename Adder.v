@@ -15,15 +15,15 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: Módulo utilizado para sumar variables de 32 bits con acarreo
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
 
 module Adder(S,A,B);
-output [31:0] S;
-input [31:0] A,B;
-wire [31:0] C;
+output [31:0] S; //Salida que suma A+B (32 bits)
+input [31:0] A,B; //Variables de entrada (32 bit c/u)
+wire [31:0] C; //Acarreo
  adder1bit adder1bit0(S[0],C[0],A[0],B[0],1'b0);
  adder1bit adder1bit1(S[1],C[1],A[1],B[1],C[0]);
  adder1bit adder1bit2(S[2],C[2],A[2],B[2],C[1]);
@@ -62,13 +62,12 @@ endmodule
 //---------------------------------------------------------------------------------------------------
 
 `timescale 1 ps / 100 fs
-module adder1bit(sum,cout,a,b,cin);
+module adder1bit(sum,cout,a,b,cin); //Suma, acarreo de salida, acarreo de entrada, a y b.
 input   a,b,cin;
 output  cout,sum;
-// sum = a xor b xor cin
-xor #(50) (sum,a,b,cin);
-// carry out = a.b + cin.(a+b)
-and #(50) and1(c1,a,b);
+xor #(50) (sum,a,b,cin); // sum = a xor b xor cin
+
+and #(50) and1(c1,a,b);// carry out = a.b + cin.(a+b)
 or #(50) or1(c2,a,b);
 and #(50) and2(c3,c2,cin);
 or #(50) or2(cout,c1,c3);
