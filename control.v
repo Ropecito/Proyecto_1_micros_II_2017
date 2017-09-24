@@ -19,6 +19,10 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+//En este modulo funciona como un control, es decir; dependiendo del opcode va a 
+//signicar una operacion ya sea tipo R, lw, sw, jump, etc. Dependiendo de este va 
+//a poner ciertos registros en 1 o 0. Este depende de la instruccion.
+
 module control(
 RegDst,
 ALUSrc,
@@ -40,7 +44,7 @@ reg RegDst,ALUSrc,MemtoReg,RegWrite,MemRead,MemWrite,Branch,Jump,SignZero;
 reg [1:0] ALUOp;
 always @(*)
 casex (Opcode)
- 6'b000000 : begin // R - type
+ 6'b000000 : begin // Si es tipo R va a poner a los registros de la siguiente manera:
      RegDst = 1'b1;
      ALUSrc = 1'b0;
      MemtoReg= 1'b0;
@@ -52,7 +56,7 @@ casex (Opcode)
      Jump = 1'b0;
      SignZero= 1'b0;
     end
- 6'b100011 : begin // lw - load word
+ 6'b100011 : begin // Si es lw - load word va a poner a los registros de la siguiente manera:
      RegDst = 1'b0;
      ALUSrc = 1'b1;
      MemtoReg= 1'b1;
@@ -64,7 +68,7 @@ casex (Opcode)
      Jump = 1'b0;
      SignZero= 1'b0; // sign extend
     end
- 6'b101011 : begin // sw - store word
+ 6'b101011 : begin // Si es sw - store word va a poner a los registros de la siguiente manera:
      RegDst = 1'bx;
      ALUSrc = 1'b1;
      MemtoReg= 1'bx;
@@ -76,7 +80,7 @@ casex (Opcode)
      Jump = 1'b0;
      SignZero= 1'b0;
     end
- 6'b000101 : begin // bne - branch if not equal
+ 6'b000101 : begin // Si es bne - branch if not equal va a poner a los registros de la siguiente manera:
      RegDst = 1'b0;
      ALUSrc = 1'b0;
      MemtoReg= 1'b0;
@@ -88,7 +92,7 @@ casex (Opcode)
      Jump = 1'b0;
      SignZero= 1'b0; // sign extend
     end
- 6'b001110 : begin // XORI - XOR immidiate
+ 6'b001110 : begin // Si es XORI - XOR immidiate va a poner a los registros de la siguiente manera:
      RegDst = 1'b0;
      ALUSrc = 1'b1;
      MemtoReg= 1'b0;
@@ -100,7 +104,7 @@ casex (Opcode)
      Jump = 1'b0;
      SignZero= 1'b1; // zero extend
     end
- 6'b000010 : begin // j - Jump
+ 6'b000010 : begin // Si es j - Jump va a poner a los registros de la siguiente manera:
      RegDst = 1'b0;
      ALUSrc = 1'b0;
      MemtoReg= 1'b0;
@@ -112,7 +116,7 @@ casex (Opcode)
      Jump = 1'b1;
      SignZero= 1'b0;
     end
- default : begin 
+ default : begin // Este es el valor default que tienen los registros
      RegDst = 1'b0;
      ALUSrc = 1'b0;
      MemtoReg= 1'b0;
