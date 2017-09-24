@@ -43,7 +43,7 @@ input [5:0] Opcode;
 reg RegDst,ALUSrc,MemtoReg,RegWrite,MemRead,MemWrite,Branch,Jump,SignZero;
 reg [1:0] ALUOp;
 always @(*)
-casex (Opcode)
+ casex (Opcode) //Case que depende del valor que se encuentre en Opcode, el procedimiento es el siguiente:
  6'b000000 : begin // Si es tipo R va a poner a los registros de la siguiente manera:
      RegDst = 1'b1;
      ALUSrc = 1'b0;
