@@ -21,7 +21,8 @@
 
 //Este es un modulo de un mux que tiene 3 entradas y un selector.
 //Es un mux de 32 a 32. El funcionamiento es el siguiente:
-//
+//Dependiendo de lo que se encuentre en el selector va a sacar en
+//Dataout lo que se encuentra en A, B o C.
 
 module mux3x32to32(DataOut,A,B,C,Select);
 output [31:0] DataOut;
