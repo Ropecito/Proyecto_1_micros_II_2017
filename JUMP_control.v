@@ -19,6 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+//Este modulo es la unidad de control de jump, es decir, si se cumple una condicion este haga un salto
 
 module JUMP_control( JRControl, ALUOp, Function);
 output JRControl;
@@ -29,7 +30,7 @@ wire [7:0] test;
 assign test = {ALUOp,Function};
 always @(test)
 case (test)
- 8'b10001000 : JRControl=1'b1; 
- default: JRControl=1'b0;
+ 8'b10001000 : JRControl=1'b1; //Si test es igual a esta condicion hay un salto de lo contrario no
+ default: JRControl=1'b0;  //Condicion por default que solo cambia si se cumple la condicion
  endcase
 endmodule
