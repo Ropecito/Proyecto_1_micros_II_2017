@@ -19,6 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+//Este modulo es el testbench del proyecto
 
 module MIPSStimulus();
 // fpga4student.com: FPGA projects, Verilog Projects, VHDL projects
@@ -35,8 +36,8 @@ always #(ClockDelay/2) clk = ~clk;
 
 initial 
 begin
-   reset = 1;
+   reset = 1; //Inicia con un reset igual a 1
   #(ClockDelay/4);
-  reset = 0;
+  reset = 0; //Despues del ClokDelay el reset pasa a ser 0
 end
 endmodule
