@@ -32,7 +32,7 @@ reg clk,reset;
 
 MIPSpipeline  myMIPS(clk, reset);
 initial clk = 0;
-always #(ClockDelay/2) clk = ~clk;
+   always #(ClockDelay/2) clk = ~clk; //Cada 2500 el clock va a estar cambiando
 
 initial 
 begin
