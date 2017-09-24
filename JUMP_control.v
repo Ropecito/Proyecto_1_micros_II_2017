@@ -27,7 +27,7 @@ reg JRControl;
 input [1:0] ALUOp;
 input [5:0] Function;
 wire [7:0] test;
-assign test = {ALUOp,Function};
+ assign test = {ALUOp,Function}; //Asigna en test como bits mas significativos los primeros 2 bit de ALUOp y como menos significativos los 6 bits de Fuction
 always @(test)
 case (test)
  8'b10001000 : JRControl=1'b1; //Si test es igual a esta condicion hay un salto de lo contrario no
